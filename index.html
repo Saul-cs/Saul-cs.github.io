@@ -1,206 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>jhy$#%%##TBfjj'''..,;</title>
-  <audio id="background-music" src="CODcurto.mp3" preload="auto" loop></audio>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: black;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      font-family: 'Courier New', Courier, monospace;
-    }
-
-    #welcome-message {
-      color: red;
-      font-size: 32px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      white-space: nowrap;
-      opacity: 0;
-      animation: fadeIn 3s ease-in-out forwards, static 3s ease-in-out 3s forwards, fadeOut 3s ease-in-out 6s forwards;
-    }
-
-    @keyframes fadeIn {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-
-    @keyframes static {
-      0% { opacity: 1; }
-      100% { opacity: 1; }
-    }
-
-    @keyframes fadeOut {
-      0% { opacity: 1; }
-      100% { opacity: 0; }
-    }
-
-    canvas {
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-
-    .binary-text {
-      color: red;
-      position: absolute;
-      font-size: 20px;
-      white-space: nowrap;
-      opacity: 0;
-      animation: fadeInOut 5s ease-in-out forwards;
-    }
-
-    @keyframes fadeInOut {
-      0% { opacity: 0; }
-      20% { opacity: 1; }
-      80% { opacity: 1; }
-      100% { opacity: 0; }
-    }
-
-    /* Estilo da área de entrada */
-    #input-area {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80%;
-      border: 2px solid red;
-      border-radius: 10px;
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 10px;
-      display: none; /* Oculta inicialmente */
-      flex-direction: row; /* Adiciona flexbox para alinhar os itens */
-    }
-
-    #input-field {
-      flex: 1; /* Faz o campo de entrada ocupar o espaço restante */
-      border: none;
-      background: transparent;
-      color: red;
-      font-size: 18px;
-      outline: none;
-    }
-
-    #send-button {
-      margin-left: 10px; /* Espaçamento entre o campo de entrada e o botão */
-      padding: 10px 15px;
-      border: none;
-      border-radius: 5px;
-      background-color: red;
-      color: white;
-      cursor: pointer;
-      font-size: 16px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dualidade Heraclitiana</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1 id="welcome-message">Bem-vindo, Junior Aguilar!</h1>
-  <canvas id="matrix"></canvas>
+    <div class="page" id="page">
+        <!-- Página Feliz -->
+        <div class="content happy-content" id="happy">
+            <h1>Η Λάμψη της Ευτυχίας</h1>
+            <p>A cifra da liberdade, símbolo de transformação, desvelará o rumo adequado.</p>
+            <button class="switch-btn" id="switch-btn" onclick="togglePage()">Explorar o outro lado</button>
+            <audio id="happy-music" src="musica_feliz.mp3" autoplay loop></audio>
+        </div>
 
-  <div id="input-area">
-    <input type="text" id="input-field" placeholder="Digite aqui..." />
-    <button id="send-button">Enviar</button>
-  </div>
+        <!-- Página Assustadora -->
+        <div class="content scary-content" id="scary">
+            <h1>Αγνωστος</h1>
+            <p>“O medo é uma porta para o desconhecido. Você está pronto para abrir?”</p>
+            <button class="switch-btn" id="switch-btn-2" onclick="togglePage()">Voltar para a luz</button>
+            <audio id="scary-music" src="musica_assustadora.mp3" loop></audio>
+        </div>
 
-  <audio id="background-music" src="CODcurto.mp3" preload="auto" loop></audio>
-  <audio id="error-sound" src="erro.mp3" preload="auto"></audio>
+        <!-- Frase Binária Animada -->
+        <div id="binary-text"></div>
+    </div>
 
-  <script>
-    const canvas = document.getElementById('matrix');
-    const ctx = canvas.getContext('2d');
-
-    // Configuração inicial do canvas
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    // Caracteres binários
-    const binary = "01";
-    const fontSize = 16;
-    const columns = canvas.width / fontSize;
-
-    // Array para armazenar as gotas
-    const drops = [];
-    for (let x = 0; x < columns; x++) {
-      drops[x] = 1;
-    }
-
-    // Função que desenha os caracteres binários
-    function draw() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; // Fundo preto com leve transparência
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.fillStyle = '#FF0000'; // Cor dos caracteres (vermelho)
-      ctx.font = `${fontSize}px Courier`;
-
-      for (let i = 0; i < drops.length; i++) {
-        const text = binary[Math.floor(Math.random() * binary.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-        // Reset para o topo da tela após ultrapassar o limite
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-
-        drops[i]++;
-      }
-    }
-
-    // Função para criar o texto binário
-    function createBinaryText() {
-      const binaryText = document.createElement('div');
-      binaryText.className = 'binary-text';
-      binaryText.innerText = '01010011 01101111 01101101';
-
-      // Posicionamento aleatório
-      binaryText.style.top = Math.random() * 100 + 'vh';
-      binaryText.style.left = Math.random() * 100 + 'vw';
-      
-      document.body.appendChild(binaryText);
-
-      // Animação de fade-in e fade-out
-      setTimeout(() => {
-        binaryText.remove();
-      }, 5000); // Dura 5 segundos
-    }
-
-    // Espera 9 segundos (tempo total da animação) antes de iniciar o efeito da chuva de códigos
-    setTimeout(() => {
-      document.getElementById('background-music').play(); // Toca a música de fundo
-      setInterval(draw, 50);
-      // Começa a criar o texto binário após o fade-out do welcome-message
-      setInterval(createBinaryText, 2000); // Inicia a geração do texto binário
-
-      // Exibir a área de entrada após o fade-out do título
-      const inputArea = document.getElementById('input-area');
-      inputArea.style.display = 'flex'; // Muda para flex para alinhar os itens
-    }, 9000);
-
-    // Função para lidar com o botão de enviar
-    document.getElementById('send-button').addEventListener('click', () => {
-      const inputField = document.getElementById('input-field');
-      const userInput = inputField.value.trim().toLowerCase(); // Lê a entrada do usuário e converte para minúsculas
-
-      if (userInput === 'som') {
-        window.location.href = 'nova_pagina.html'; // Altere para o URL da nova página
-      } else {
-        document.getElementById('error-sound').play(); // Emite o som de erro
-      }
-    });
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,130 @@
+/* Reset */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+}
+
+.page {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.content {
+    text-align: center;
+    position: absolute;
+    transition: opacity 1s ease;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+}
+
+.content h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    animation: fadeInText 3s;
+}
+
+.content p {
+    font-size: 1.5em;
+    max-width: 500px;
+    margin-bottom: 50px;
+    animation: fadeInText 5s;
+}
+
+.switch-btn {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    color: white;
+    background-color: #333;
+    border: none;
+    cursor: pointer;
+    animation: fadeInText 7s;
+}
+
+.switch-btn:hover {
+    background-color: #555;
+}
+
+/* Animações de texto */
+@keyframes fadeInText {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Página Feliz */
+.happy-content {
+    background: linear-gradient(120deg, #ffeb3b, #ff9800);
+    color: #2e7d32;
+    opacity: 1;
+}
+
+.happy-content h1 {
+    color: #2e7d32;
+}
+
+.happy-content p {
+    color: #4caf50;
+}
+
+/* Página Assustadora */
+.scary-content {
+    background: radial-gradient(circle, #000000, #2f3640);
+    color: #f44336;
+    opacity: 0;
+}
+
+.scary-content h1 {
+    color: #e74c3c;
+}
+
+.scary-content p {
+    color: #ecf0f1;
+}
+
+.scary-content:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url('background_assustador.jpg') no-repeat center center fixed;
+    background-size: cover;
+    opacity: 0.2;
+}
+
+/* Transição entre feliz e assustador */
+body.scary-mode .happy-content {
+    opacity: 0;
+}
+
+body.scary-mode .scary-content {
+    opacity: 1;
+}
+
+/* Estilo da frase binária */
+#binary-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 2em;
+    color: white;
+    opacity: 0;
+    animation: fadeInOutText 6s infinite;
+}
+
+@keyframes fadeInOutText {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+}
