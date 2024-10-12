@@ -1,199 +1,205 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>onfakjfsmas,f,,r,,,r,,</title>
-    <style>
-        body {
-            background-color: black;
-            color: #00FF00;
-            font-family: "Courier New", Courier, monospace;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .welcome-message {
-            font-size: 48px;
-            text-align: center;
-            animation: fade-in 3s ease-in-out forwards;
-        }
-        @keyframes fade-in {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
-        .console {
-            display: none; /* Esconde o console inicialmente */
-            width: 80%;
-            max-width: 800px;
-            height: 60%;
-            overflow-y: auto;
-            border: 2px solid #00FF00;
-            padding: 20px;
-            box-shadow: 0 0 10px #00FF00;
-        }
-        .line {
-            white-space: nowrap;
-            overflow: hidden;
-            border-right: 2px solid;
-            width: 0;
-            animation: typing 4s steps(50, end), blink-caret 0.75s step-end infinite;
-        }
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #00FF00 }
-        }
-        .random-line {
-            color: #00FF00;
-            animation: random-flicker 3s infinite alternate;
-        }
-        @keyframes random-flicker {
-            0% { opacity: 1; }
-            50% { opacity: 0.8; }
-            100% { opacity: 0.3; }
-        }
-        .coordinates {
-            font-size: 24px;
-            margin-top: 20px;
-            text-align: center;
-            animation: fade-in 5s ease-in-out forwards;
-            position: fixed;
-            bottom: 30px;
-            color: #00FF00;
-        }
-        /* Estilo das mensagens ao redor da tela */
-        .floating-messages {
-            position: fixed;
-            color: #00FF00;
-            animation: fade 3s ease-in-out infinite;
-        }
-        @keyframes fade {
-            0% { opacity: 0; }
-            50% { opacity: 1; }
-            100% { opacity: 0; }
-        }
-        .message-top-left {
-            top: 10px;
-            left: 10px;
-        }
-        .message-top-right {
-            top: 10px;
-            right: 10px;
-        }
-        .message-bottom-left {
-            bottom: 10px;
-            left: 10px;
-        }
-        .message-bottom-right {
-            bottom: 10px;
-            right: 10px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jhy$#%%##TBfjj'''..,;</title>
+  <audio id="background-music" src="COD.mp3" preload="auto" loop></audio>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    #welcome-message {
+      color: red;
+      font-size: 32px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      white-space: nowrap;
+      opacity: 0;
+      animation: fadeIn 3s ease-in-out forwards, static 3s ease-in-out 3s forwards, fadeOut 3s ease-in-out 6s forwards;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes static {
+      0% { opacity: 1; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    canvas {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .binary-text {
+      color: red;
+      position: absolute;
+      font-size: 20px;
+      white-space: nowrap;
+      opacity: 0;
+      animation: fadeInOut 5s ease-in-out forwards;
+    }
+
+    @keyframes fadeInOut {
+      0% { opacity: 0; }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    /* Estilo da área de entrada */
+    #input-area {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      border: 2px solid red;
+      border-radius: 10px;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+      display: none; /* Oculta inicialmente */
+      flex-direction: row; /* Adiciona flexbox para alinhar os itens */
+    }
+
+    #input-field {
+      flex: 1; /* Faz o campo de entrada ocupar o espaço restante */
+      border: none;
+      background: transparent;
+      color: red;
+      font-size: 18px;
+      outline: none;
+    }
+
+    #send-button {
+      margin-left: 10px; /* Espaçamento entre o campo de entrada e o botão */
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: red;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+    }
+  </style>
 </head>
 <body>
+  <h1 id="welcome-message">Bem-vindo, Junior Aguilar!</h1>
+  <canvas id="matrix"></canvas>
 
-<div class="welcome-message" id="welcome-message">
-    Bem-vindo, Junior Aguilar!
-</div>
+  <div id="input-area">
+    <input type="text" id="input-field" placeholder="Digite aqui..." />
+    <button id="send-button">Enviar</button>
+  </div>
 
-<div class="console" id="console">
-    <div class="line">Iniciando sequência...</div>
-</div>
+  <audio id="error-sound" src="erro.mp3" preload="auto"></audio>
 
-<div class="coordinates" id="coordinates">
-    37°04'44"N 15°15'54"E
-</div>
+  <script>
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
 
-<!-- Mensagens flutuantes ao redor da tela -->
-<div class="floating-messages message-top-left" id="message-top-left"></div>
-<div class="floating-messages message-top-right" id="message-top-right"></div>
-<div class="floating-messages message-bottom-left" id="message-bottom-left"></div>
-<div class="floating-messages message-bottom-right" id="message-bottom-right"></div>
+    // Configuração inicial do canvas
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-<script>
-    const welcomeMessage = document.getElementById('welcome-message');
-    const consoleElement = document.getElementById("console");
-    const messages = [
-        "Alanvaca...",
-        "Cesar...",
-        "134314131341341341341341341...",
-        "Cifra...",
-        "Circunferência...",
-        "Júlio César..."
-    ];
+    // Caracteres binários
+    const binary = "01";
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
 
-    const messageTopLeft = document.getElementById("message-top-left");
-    const messageTopRight = document.getElementById("message-top-right");
-    const messageBottomLeft = document.getElementById("message-bottom-left");
-    const messageBottomRight = document.getElementById("message-bottom-right");
-
-    let index = 0;
-
-    // Função para atualizar as mensagens ao redor da tela
-    function updateFloatingMessages() {
-        const currentMessage = messages[index % messages.length];
-        messageTopLeft.textContent = currentMessage;
-        messageTopRight.textContent = messages[(index + 1) % messages.length];
-        messageBottomLeft.textContent = messages[(index + 2) % messages.length];
-        messageBottomRight.textContent = messages[(index + 3) % messages.length];
-        index++;
+    // Array para armazenar as gotas
+    const drops = [];
+    for (let x = 0; x < columns; x++) {
+      drops[x] = 1;
     }
 
-    // Atualizar as mensagens a cada 3 segundos
-    setInterval(updateFloatingMessages, 3000);
+    // Função que desenha os caracteres binários
+    function draw() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; // Fundo preto com leve transparência
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Função para adicionar uma nova linha ao "console"
-    function addLine(text) {
-        const newLine = document.createElement("div");
-        newLine.classList.add("line");
-        newLine.textContent = text;
-        consoleElement.appendChild(newLine);
+      ctx.fillStyle = '#FF0000'; // Cor dos caracteres (vermelho)
+      ctx.font = `${fontSize}px Courier`;
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = binary[Math.floor(Math.random() * binary.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        // Reset para o topo da tela após ultrapassar o limite
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+
+        drops[i]++;
+      }
     }
 
-    // Função para simular a digitação com atraso
-    function simulateTyping(text, delay) {
-        setTimeout(() => {
-            addLine(text);
-        }, delay);
+    // Função para criar o texto binário
+    function createBinaryText() {
+      const binaryText = document.createElement('div');
+      binaryText.className = 'binary-text';
+      binaryText.innerText = '01010011 01101111 01101101';
+
+      // Posicionamento aleatório
+      binaryText.style.top = Math.random() * 100 + 'vh';
+      binaryText.style.left = Math.random() * 100 + 'vw';
+      
+      document.body.appendChild(binaryText);
+
+      // Animação de fade-in e fade-out
+      setTimeout(() => {
+        binaryText.remove();
+      }, 5000); // Dura 5 segundos
     }
 
-    // Função para exibir o código específico
-    function displaySpecificCode() {
-        const code = "Gh-ph xpd dodydqfd h xp srqwr gh dsrlr h hx pryhuhl r pxqgr";
-        const codeLine = document.createElement("div");
-        codeLine.classList.add("random-line");
-        codeLine.textContent = code;
-        consoleElement.appendChild(codeLine);
-        consoleElement.scrollTop = consoleElement.scrollHeight; // Rolar para baixo
-    }
+    // Espera 9 segundos (tempo total da animação) antes de iniciar o efeito da chuva de códigos
+    setTimeout(() => {
+      document.getElementById('background-music').play(); // Toca a música de fundo
+      setInterval(draw, 50);
+      // Começa a criar o texto binário após o fade-out do welcome-message
+      setInterval(createBinaryText, 2000); // Inicia a geração do texto binário
 
-    // Função para mostrar o console após a saudação
-    function showConsole() {
-        welcomeMessage.style.display = 'none'; // Esconde a saudação
-        consoleElement.style.display = 'block'; // Mostra o console
-        let delay = 0;
-        messages.forEach((message, index) => {
-            simulateTyping(message, delay);
-            delay += 3000; // Atraso para cada mensagem
-            setTimeout(displaySpecificCode, delay); // Adicionar código específico após cada mensagem
-            delay += 1000; // Tempo para o código específico aparecer
-        });
-    }
+      // Exibir a área de entrada após o fade-out do título
+      const inputArea = document.getElementById('input-area');
+      inputArea.style.display = 'flex'; // Muda para flex para alinhar os itens
+    }, 9000);
 
-    // Mostrar o console após 5 segundos da saudação
-    setTimeout(showConsole, 5000);
-</script>
+    // Função para lidar com o botão de enviar
+    document.getElementById('send-button').addEventListener('click', () => {
+      const inputField = document.getElementById('input-field');
+      const userInput = inputField.value.trim().toLowerCase(); // Lê a entrada do usuário e converte para minúsculas
 
+      if (userInput === 'som') {
+        window.location.href = 'nova_pagina.html'; // Altere para o URL da nova página
+      } else {
+        document.getElementById('error-sound').play(); // Emite o som de erro
+      }
+    });
+  </script>
 </body>
 </html>

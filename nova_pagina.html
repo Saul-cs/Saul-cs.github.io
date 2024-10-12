@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Espectrograma</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: red;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            font-size: 24px;
+        }
+        a {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+        a:hover {
+            background-color: darkred;
+        }
+        footer {
+            position: absolute;
+            bottom: 10px; /* distância do fundo */
+            width: 100%;
+            text-align: center;
+            font-size: 14px; /* tamanho da fonte do rodapé */
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <audio autoplay loop>
+        <source src="Revelador.mp3" type="audio/mp3">
+        Seu navegador não suporta áudio.
+    </audio>
+    <div>
+        <p>E o que leva aquele som?</p>
+        <p>Você sabe?</p>
+        <p>Você precisa saber!</p>
+        <p>Estude sobre espectrograma e dê um jeito de descobrir o que realmente é o som de antes!</p>
+        <a href="COD.mp3" download>Baixar Áudio</a>
+    </div>
+    <footer>
+        <p style="text-align: center;">Todos os direitos reservados © Saul Carvalho Silva</p>
+    </footer>
+</body>
+
+</html>
